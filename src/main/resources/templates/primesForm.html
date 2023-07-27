@@ -6,14 +6,14 @@
 </head>
 <body>
 
-<form th:action="@{/getPrimes}">
+<form th:action="@{/getPrimes}" th:method="get">
     <label for="pNumber">Please input the wanted boundary:  </label>
     <input type="number" id="pNumber" th:name="pNumber"><br><br>
     <input type="submit" value="Submit">
     <input type="reset" value="Reset the input">
 </form>
 
-<form th:action="@{/resetPrimes}">
+<form th:action="@{/resetPrimes}" th:method="get">
     <input type="submit" value="Reset out the output">
 </form>
 
