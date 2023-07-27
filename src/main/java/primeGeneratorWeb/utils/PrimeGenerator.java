@@ -4,6 +4,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class PrimeGenerator {
+    /*
+    a prime number cannot be divisible by 2,3,5 or another prime number
+     */
 
     public static Set<Integer> primes(int num) {
 
