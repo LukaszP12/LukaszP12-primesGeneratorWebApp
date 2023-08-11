@@ -27,6 +27,13 @@ class PrimeControllerTest {
     }
 
     @Test
+    public void getPrimes_input_zero() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getPrimes").param("pNumber", "0"))
+                .andExpect(MockMvcResultMatchers.model().attribute("primes", Matchers.nullValue()))
+                .andExpect(view().name("primesForm"));
+    }
+
+    @Test
     public void getPrimes_input_negative_5() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/getPrimes").param("pNumber", "-5"))
                 .andExpect(MockMvcResultMatchers.model().attribute("primes", Matchers.nullValue()))
