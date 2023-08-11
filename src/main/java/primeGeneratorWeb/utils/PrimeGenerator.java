@@ -10,6 +10,10 @@ public class PrimeGenerator {
 
     public static Set<Integer> primes(int num) {
 
+        if (num <= 0) {
+            return null;
+        }
+
         Set<Integer> primes = new TreeSet<>();
         primes.add(2);
         primes.add(3);

@@ -12,6 +12,42 @@ import java.util.Set;
 public class PrimeGeneratorTest {
 
     @Test
+    public void primes_negative_minus_0() {
+        // given
+        int number = 0;
+
+        // when
+        Set<Integer> primes = PrimeGenerator.primes(number);
+
+        // then
+        Assert.assertEquals(null, primes);
+    }
+
+    @Test
+    public void primes_negative_minus_5() {
+        // given
+        int number = -5;
+
+        // when
+        Set<Integer> primes = PrimeGenerator.primes(number);
+
+        // then
+        Assert.assertEquals(null, primes);
+    }
+
+    @Test
+    public void primes_negative_minus_10() {
+        // given
+        int number = -10;
+
+        // when
+        Set<Integer> primes = PrimeGenerator.primes(number);
+
+        // then
+        Assert.assertEquals(null, primes);
+    }
+
+    @Test
     public void primes_below_30() {
         // given
         List<Integer> expectedResult = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
