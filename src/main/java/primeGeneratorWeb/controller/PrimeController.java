@@ -14,8 +14,12 @@ import java.util.Set;
 @Controller
 public class PrimeController {
 
+    private final PrimeService primeService;
+
     @Autowired
-    PrimeService primeService;
+    public PrimeController(PrimeService primeService) {
+        this.primeService = primeService;
+    }
 
     @RequestMapping("/primes")
     public String showPrimes(@RequestParam(value = "pNumber", required = false) Integer pNumber) {
