@@ -15,18 +15,22 @@ public class PrimeGenerator {
         }
 
         Set<Integer> primes = new TreeSet<>();
-        primes.add(2);
-        primes.add(3);
-        primes.add(5);
 
-        for (int i = 5; i <= num; i = i + 2) {
+        for (int i = 2; i <= num; i++) {
 
-            if (!isDivPrime(primes, i)) {
+            if (i == 2) {
+                primes.add(2);
+            } else if (i == 3) {
+                primes.add(3);
+            } else if (i == 5) {
+                primes.add(5);
+            } else if (!isDivPrime(primes, i)) {
                 primes.add(i);
             }
 
         }
 
+        primes.add(1);
         return primes;
     }
 
