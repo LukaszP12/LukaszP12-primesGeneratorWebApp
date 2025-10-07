@@ -2,23 +2,82 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prime Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            margin-bottom: 15px;
+        }
+
+        input[type="number"] {
+            width: 200px;
+            padding: 5px;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            margin-top: 10px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .hint {
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
+<h1>Prime Number Generator</h1>
+
+<!-- Main input form -->
 <form th:action="@{/getPrimes}" th:method="get">
-    <label for="pNumber">Please input the wanted boundary:  </label>
-    <input type="number" id="pNumber" th:name="pNumber" min="0"><br><br>
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset the input">
+    <label for="pNumber">Enter the upper boundary (≥ 2): </label>
+    <input type="number" id="pNumber" name="pNumber" min="2" required>
+    <br><br>
+    <input type="submit" value="Generate Primes">
+    <input type="reset" value="Clear Input">
 </form>
 
+<!-- Reset output button -->
 <form th:action="@{/resetPrimes}" th:method="get">
-    <input type="submit" value="Reset out the output">
+    <input type="submit" value="Clear Output">
 </form>
 
-<span th:if="${primes==null}">Input a number and we will show all primes within the boundary</span>
-<span th:if="${primes!=null}" th:text="${primes}"></span>
+<!-- Error message -->
+<div th:if="${error}" class="error" th:text="${error}"></div>
+
+<!-- Instruction when no primes yet -->
+<div th:if="${primes == null}" class="hint">
+    <p>Enter a number to see all prime numbers up to that value.</p>
+</div>
+
+<!-- Primes output -->
+<div th:if="${primes != null}" class="result">
+    <h3>Prime numbers:</h3>
+    <p th:text="${#strings.listJoin(primes, ', ')}"></p>
+</div>
 
 </body>
 </html>
