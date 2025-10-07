@@ -1,5 +1,6 @@
 package primeGeneratorWeb.utils;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -10,32 +11,24 @@ public class PrimeGenerator {
 
     public static Set<Integer> primes(int num) {
 
-        if (num <= 0) {
-            return null;
+        if (num < 2) {
+            return Collections.emptySet();
         }
 
         Set<Integer> primes = new TreeSet<>();
-
         for (int i = 2; i <= num; i++) {
-
-            if (i == 2) {
-                primes.add(2);
-            } else if (i == 3) {
-                primes.add(3);
-            } else if (i == 5) {
-                primes.add(5);
-            } else if (!isDivPrime(primes, i)) {
-                primes.add(i);
+            boolean isPrime = true;
+            int sqrt = (int) Math.sqrt(i);
+            for (int p : primes) {
+                if (p > sqrt) break;
+                if (i % p == 0) {
+                    isPrime = false;
+                    break;
+                }
             }
-
+            if (isPrime) primes.add(i);
         }
 
-        primes.add(1);
         return primes;
     }
-
-    private static boolean isDivPrime(Set<Integer> primes, int i) {
-        return primes.stream().filter(x -> i % x == 0).findAny().isPresent();
-    }
-
 }
