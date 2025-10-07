@@ -1,7 +1,14 @@
 package primeGeneratorWeb.service;
 
+import org.springframework.stereotype.Service;
+import primeGeneratorWeb.utils.PrimeGenerator;
+
 import java.util.Set;
 
-public interface PrimeService {
-    Set<Integer> getPrimes(int number);
+@Service
+public class PrimeService {
+
+    public Set<Integer> generatePrimes(int number) {
+        return PrimeGenerator.primes(number);
+    }
 }
